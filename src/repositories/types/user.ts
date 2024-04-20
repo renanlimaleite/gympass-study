@@ -25,5 +25,7 @@ export interface ICoreUsersRepository {
     password_hash,
   }: CoreUserCreateInput) => Promise<CoreUser>;
 
-  findByEmail: (email: string) => Promise<CoreUser | null>;
+  findById(id: string): Promise<CoreUser | null>;
+
+  findByEmail(email: string): Promise<CoreUser | null>;
 }

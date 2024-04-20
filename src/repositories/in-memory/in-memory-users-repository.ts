@@ -28,7 +28,19 @@ export class InMemoryUsersRepository implements ICoreUsersRepository {
     return user;
   }
 
-  async findByEmail(email: string): Promise<CoreUser | null> {
+  async findById(id: string): Promise<CoreUser | null> {
+    const user = this.users.find((user) => user.id === id);
+
+    if (!user) {
+      return null;
+    }
+
+    console.info("User found:", user);
+
+    return user;
+  }
+
+  async findByEmail(email: string) {
     const user = this.users.find((user) => user.email === email);
 
     if (!user) {
