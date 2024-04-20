@@ -3,6 +3,7 @@ import {
   CoreUserCreateInput,
   ICoreUsersRepository,
 } from "@/repositories/types";
+import { randomUUID } from "node:crypto";
 
 export class InMemoryUsersRepository implements ICoreUsersRepository {
   // Fake database
@@ -14,7 +15,7 @@ export class InMemoryUsersRepository implements ICoreUsersRepository {
     password_hash,
   }: CoreUserCreateInput): Promise<CoreUser> {
     const user: CoreUser = {
-      id: String(this.users.length + 1),
+      id: randomUUID(),
       name,
       email,
       password_hash,
