@@ -1,4 +1,5 @@
-import { CoreGym, ICoreGymsRepository } from "../@types";
+import { randomUUID } from "crypto";
+import { CoreGym, CoreGymCreateInput, ICoreGymsRepository } from "../@types";
 
 export class InMemoryGymsRepository implements ICoreGymsRepository {
   // Fake database
@@ -10,6 +11,28 @@ export class InMemoryGymsRepository implements ICoreGymsRepository {
     if (!gym) {
       return null;
     }
+
+    return gym;
+  }
+
+  async create({
+    id,
+    title,
+    description,
+    phone,
+    latitude,
+    longitude,
+  }: CoreGymCreateInput): Promise<CoreGym> {
+    const gym = {
+      id: id ?? randomUUID(),
+      title,
+      description: description ?? null,
+      phone: phone ?? null,
+      latitude,
+      longitude,
+    };
+
+    this.gyms.push(gym);
 
     return gym;
   }
