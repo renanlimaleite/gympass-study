@@ -29,3 +29,8 @@ export interface ICoreUsersRepository {
 
   findByEmail(email: string): Promise<CoreUser | null>;
 }
+
+export interface CoreFetchUserUseCaseRequest {
+  userId: string;
+  page: number;
+}
