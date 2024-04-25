@@ -2,7 +2,8 @@ import {
   CoreCheckIn,
   CoreCheckInCreateInput,
   ICoreCheckInRepository,
-} from "@/repositories/types";
+} from "@/repositories/@types";
+import dayjs from "dayjs";
 import { randomUUID } from "node:crypto";
 
 export class InMemoryCheckInsRepository implements ICoreCheckInRepository {
@@ -24,8 +25,25 @@ export class InMemoryCheckInsRepository implements ICoreCheckInRepository {
 
     this.checkIns.push(checkIn);
 
-    console.info("Check In created:", checkIn);
-
     return checkIn;
+  }
+
+  async findByUserIdOnDate(userId: string, date: Date) {
+    const startOfTheDay = dayjs(date).startOf("date");
+    const endOfTheDay = dayjs(date).endOf("date");
+
+    const checkOnSameDate = this.checkIns.find((checkin) => {
+      const checkInDate = dayjs(checkin.created_at);
+      const isOnSameDate =
+        checkInDate.isAfter(startOfTheDay) && checkInDate.isBefore(endOfTheDay);
+
+      return checkin.user_id === userId && isOnSameDate;
+    });
+
+    if (!checkOnSameDate) {
+      return null;
+    }
+
+    return checkOnSameDate;
   }
 }

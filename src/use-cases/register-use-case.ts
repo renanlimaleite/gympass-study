@@ -2,7 +2,7 @@ import { IPrismaUsersRepository } from "@/repositories/prisma/prisma-users-repos
 import {
   CoreRegisterUseCaseRequest,
   ICoreUsersRepository,
-} from "@/repositories/types";
+} from "@/repositories/@types";
 
 import { hash } from "bcryptjs";
 import { UserAlreadyExistsError } from "./errors/user-already-exists-error";

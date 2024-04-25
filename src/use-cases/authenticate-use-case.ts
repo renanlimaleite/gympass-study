@@ -1,5 +1,5 @@
 import { IPrismaUsersRepository } from "@/repositories/prisma/prisma-users-repository.types";
-import { CoreUser, ICoreUsersRepository } from "@/repositories/types";
+import { CoreUser, ICoreUsersRepository } from "@/repositories/@types";
 import { InvalidCredentialsError } from "./errors/invalid-credentials-error";
 import { compare } from "bcryptjs";
 import { User } from "@prisma/client";

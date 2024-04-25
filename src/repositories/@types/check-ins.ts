@@ -9,6 +9,8 @@ export type CoreCheckIn = {
 export interface CoreCheckInUseCaseRequest {
   userId: string;
   gymId: string;
+  userLatitude: number;
+  userLongitude: number;
 }
 
 interface CheckInUseCaseResponse {
@@ -25,4 +27,5 @@ export type CoreCheckInCreateInput = {
 
 export interface ICoreCheckInRepository {
   create: ({ user_id, gym_id }: CoreCheckInCreateInput) => Promise<CoreCheckIn>;
+  findByUserIdOnDate(userId: string, date: Date): Promise<CoreCheckIn | null>;
 }

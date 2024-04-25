@@ -2,7 +2,7 @@ import {
   CoreUser,
   CoreUserCreateInput,
   ICoreUsersRepository,
-} from "@/repositories/types";
+} from "@/repositories/@types";
 import { randomUUID } from "node:crypto";
 
 export class InMemoryUsersRepository implements ICoreUsersRepository {
@@ -24,8 +24,6 @@ export class InMemoryUsersRepository implements ICoreUsersRepository {
 
     this.users.push(user);
 
-    console.info("User created:", user);
-
     return user;
   }
 
@@ -36,8 +34,6 @@ export class InMemoryUsersRepository implements ICoreUsersRepository {
       return null;
     }
 
-    console.info("User found:", user);
-
     return user;
   }
 
@@ -47,8 +43,6 @@ export class InMemoryUsersRepository implements ICoreUsersRepository {
     if (!user) {
       return null;
     }
-
-    console.info("User found:", user);
 
     return user;
   }

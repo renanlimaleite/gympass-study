@@ -1,5 +1,5 @@
 import { IPrismaUsersRepository } from "@/repositories/prisma/prisma-users-repository.types";
-import { CoreUser, ICoreUsersRepository } from "@/repositories/types";
+import { CoreUser, ICoreUsersRepository } from "@/repositories/@types";
 import { User } from "@prisma/client";
 import { ResourceNotFoundError } from "./errors/resource-not-found-error";
 
