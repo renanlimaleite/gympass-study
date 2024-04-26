@@ -47,6 +47,10 @@ export class InMemoryCheckInsRepository implements ICoreCheckInRepository {
     return checkOnSameDate;
   }
 
+  async countByUserId(userId: string): Promise<number> {
+    return this.checkIns.filter((checkin) => checkin.user_id === userId).length;
+  }
+
   // slice
   // page(1) - 1 * 20 = 0
   // page * 20 = 20

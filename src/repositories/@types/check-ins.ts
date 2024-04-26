@@ -29,4 +29,5 @@ export interface ICoreCheckInRepository {
   create: ({ user_id, gym_id }: CoreCheckInCreateInput) => Promise<CoreCheckIn>;
   findByUserIdOnDate(userId: string, date: Date): Promise<CoreCheckIn | null>;
   findManyByUserId(userId: string, page: number): Promise<CoreCheckIn[]>;
+  countByUserId(userId: string): Promise<number>;
 }

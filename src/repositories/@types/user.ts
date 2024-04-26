@@ -34,3 +34,7 @@ export interface CoreFetchUserUseCaseRequest {
   userId: string;
   page: number;
 }
+
+export interface CoreMetricsUserUseCaseRequest {
+  userId: string;
+}
