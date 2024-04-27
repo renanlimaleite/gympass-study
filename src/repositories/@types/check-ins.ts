@@ -13,10 +13,6 @@ export interface CoreCheckInUseCaseRequest {
   userLongitude: number;
 }
 
-interface CheckInUseCaseResponse {
-  checkIn: CoreCheckIn;
-}
-
 export type CoreCheckInCreateInput = {
   id?: string | undefined;
   created_at?: string | Date | undefined;
@@ -25,9 +21,15 @@ export type CoreCheckInCreateInput = {
   gym_id: string;
 };
 
+export interface CoreValidateCheckInUseCaseRequest {
+  checkInId: string;
+}
+
 export interface ICoreCheckInRepository {
   create: ({ user_id, gym_id }: CoreCheckInCreateInput) => Promise<CoreCheckIn>;
+  findById(id: string): Promise<CoreCheckIn | null>;
   findByUserIdOnDate(userId: string, date: Date): Promise<CoreCheckIn | null>;
   findManyByUserId(userId: string, page: number): Promise<CoreCheckIn[]>;
   countByUserId(userId: string): Promise<number>;
+  save(checkIn: CoreCheckIn): Promise<CoreCheckIn>;
 }

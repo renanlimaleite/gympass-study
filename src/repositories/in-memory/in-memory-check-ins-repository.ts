@@ -63,4 +63,20 @@ export class InMemoryCheckInsRepository implements ICoreCheckInRepository {
       .filter((checkin) => checkin.user_id === userId)
       .slice((page - 1) * 20, page * 20);
   }
+
+  async findById(id: string) {
+    return this.checkIns.find((checkin) => checkin.id === id) || null;
+  }
+
+  async save(checkIn: CoreCheckIn) {
+    const checkInIndex = this.checkIns.findIndex(
+      (arraycheckin) => arraycheckin.id === checkIn.id
+    );
+
+    if (checkInIndex >= 0) {
+      this.checkIns[checkInIndex] = checkIn;
+    }
+
+    return checkIn;
+  }
 }
